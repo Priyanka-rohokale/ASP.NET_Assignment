@@ -13,27 +13,30 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      # Checkout the code from the repository
       - name: Checkout Code
         uses: actions/checkout@v2
 
+      # Setup .NET SDK version (you can adjust the version to match your project requirements)
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '6.0.x'
 
+      # Setup Visual Studio Build Tools (for running tests with vstest.console.exe)
       - name: Set up Visual Studio Build Tools
         uses: microsoft/setup-msbuild@v1
 
-      - name: List Files to Check Path
-        run: dir "ASP.NET Assignment"  # Check the directory and path
-
+      # Restore dependencies (with secret for NuGet authentication)
       - name: Restore dependencies
-        run: nuget restore "ASP.NET Assignment.sln"
+        run: dotnet restore "ASP.NET Assignment.sln"
         env:
-          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_AUTH_TOKEN }}
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_AUTH_TOKEN }}  # Reference secret for NuGet authentication
 
+      # Build the solution
       - name: Build Solution
-        run: msbuild "ASP.NET Assignment.sln" /p:Configuration=Release
+        run: dotnet build "ASP.NET Assignment.sln" --configuration Release
 
+      # Run Unit Tests using dotnet test
       - name: Run Unit Tests
-        run: vstest.console.exe "ASP.NET Assignment.Tests\bin\Debug\OrderProcessing.Tests.dll"
+        run: dotnet test "ASP.NET Assignment.Tests\ASP.NET Assignment.Tests.csproj" --configuration Release
