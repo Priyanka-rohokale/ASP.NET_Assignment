@@ -37,4 +37,4 @@ jobs:
 
       # Run Unit Tests using dotnet test
       - name: Run Unit Tests
-        run: dotnet test "ASP.NET Assignment.Tests\ASP.NET Assignment.Tests.csproj" --configuration Release
+        run: dotnet test "\"ASP.NET Assignment\\OrderProcessing.Tests\\OrderProcessing.Tests.csproj\"" --configuration Release
