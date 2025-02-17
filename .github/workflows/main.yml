@@ -1,0 +1,33 @@
+name: .NET Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 4.7.2
+
+      - name: Restore dependencies
+        run: nuget restore
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_AUTH_TOKEN }}
+
+      - name: Build Solution
+        run: msbuild OrderProcessingApp.sln /p:Configuration=Release
+
+      - name: Run Unit Tests
+        run: vstest.console.exe OrderProcessing.Tests\bin\Debug\OrderProcessing.Tests.dll
