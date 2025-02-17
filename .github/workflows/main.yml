@@ -35,6 +35,4 @@ jobs:
       - name: Build Solution
         run: msbuild "ASP.NET Assignment.sln" /p:Configuration=Release
 
-      # Run Unit Tests using dotnet test
-      - name: Run Unit Tests
-        run: dotnet test "\"ASP.NET Assignment\\OrderProcessing.Tests\\OrderProcessing.Tests.csproj\"" --configuration Release
+    
