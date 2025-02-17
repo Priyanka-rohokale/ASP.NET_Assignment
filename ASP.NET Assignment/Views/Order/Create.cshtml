@@ -1,0 +1,42 @@
+﻿
+
+@model ASP.NET_Assignment.Controllers.Order
+
+<style>
+    input[type="submit"]:hover {
+        background-color: #0056b3; 
+        cursor: pointer;
+    }
+</style>
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Order</h2>
+
+@using (Html.BeginForm())
+{
+    <div style="max-width: 500px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+
+        <h3 style="text-align: center; margin-bottom: 20px;">Enter Order Details</h3>
+
+        <div style="margin-bottom: 20px;">
+            @Html.LabelFor(model => model.OrderAmount, new { @class = "form-label" })
+            @Html.TextBoxFor(model => model.OrderAmount, new { @class = "form-control", placeholder = "Enter order amount" })
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            @Html.LabelFor(model => model.CustomerType, new { @class = "form-label" })
+            @Html.DropDownListFor(model => model.CustomerType, new List<SelectListItem> {
+                new SelectListItem { Text = "New", Value = "New" },
+                new SelectListItem { Text = "Loyal", Value = "Loyal" }
+            }, new { @class = "form-control" })
+        </div>
+
+        <div style="text-align: center;">
+            <input type="submit" value="Submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;" />
+        </div>
+    </div>
+}

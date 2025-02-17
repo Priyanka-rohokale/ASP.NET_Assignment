@@ -1,0 +1,44 @@
+﻿<style>
+    a:hover {
+        background-color: #0056b3; /* Darker blue for hover */
+        text-decoration: none;
+    }
+</style>
+
+@model ASP.NET_Assignment.Controllers.Order
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";  // Adjust based on your layout path
+}
+
+<h2>Order Results</h2>
+
+<div style="border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; background-color: #f9f9f9;">
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; vertical-align: top; font-weight: bold;">Order Id:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">@Model.Id</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; vertical-align: top; font-weight: bold;">Customer Type:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">@Model.CustomerType</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; vertical-align: top; font-weight: bold;">Order Amount:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">$@Model.OrderAmount</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; vertical-align: top; font-weight: bold;">Discount:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">@Model.Discount</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px; border: 1px solid #ddd; vertical-align: top; font-weight: bold;">Total Amount:</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">$@Model.TotalAmount</td>
+        </tr>
+    </table>
+
+    <div style="margin-top: 20px;">
+        <a href="@Url.Action("Create", "Order")" style="text-decoration: none; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px;">Back to Create</a>
+    </div>
+</div>
+</div>
