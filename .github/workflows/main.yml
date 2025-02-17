@@ -19,7 +19,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.0   # Use a supported version (e.g., .NET 6)
+          dotnet-version: '6.0.x'  # Correct format for version
 
       - name: Restore dependencies
         run: nuget restore
