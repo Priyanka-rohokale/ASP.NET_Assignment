@@ -19,18 +19,21 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '6.0.x'  # Correct version format
+          dotnet-version: '6.0.x'
 
       - name: Set up Visual Studio Build Tools
-        uses: microsoft/setup-msbuild@v1  # Ensures MSBuild tools are available
+        uses: microsoft/setup-msbuild@v1
+
+      - name: List Files to Check Path
+        run: dir "ASP.NET Assignment"  # Check the directory and path
 
       - name: Restore dependencies
-        run: nuget restore
+        run: nuget restore "ASP.NET Assignment.sln"
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.NUGET_AUTH_TOKEN }}
 
       - name: Build Solution
-        run: msbuild OrderProcessingApp.sln /p:Configuration=Release
+        run: msbuild "ASP.NET Assignment.sln" /p:Configuration=Release
 
       - name: Run Unit Tests
-        run: vstest.console.exe OrderProcessing.Tests\bin\Debug\OrderProcessing.Tests.dll
+        run: vstest.console.exe "ASP.NET Assignment.Tests\bin\Debug\OrderProcessing.Tests.dll"
